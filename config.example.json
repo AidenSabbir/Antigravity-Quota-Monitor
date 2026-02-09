@@ -1,0 +1,18 @@
+{
+  "accounts": [
+    {
+      "name": "Production",
+      "apiKey": "sk-ant-example-key",
+      "baseUrl": "https://api.anthropic.com",
+      "color": "#FF0000"
+    },
+    {
+      "name": "Development",
+      "apiKey": "sk-ant-example-key-2",
+      "baseUrl": "https://api.anthropic.com",
+      "color": "#FFFF00"
+    }
+  ],
+  "refreshInterval": 30000,
+  "alertThreshold": 80
+}
