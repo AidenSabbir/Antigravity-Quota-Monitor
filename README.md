@@ -1,36 +1,97 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Antigravity Rate Limit Monitor
 
-## Getting Started
+A visually striking, Neo-Brutalist dashboard for monitoring API rate limits and quotas across multiple Antigravity (OpenCode) accounts.
 
-First, run the development server:
+## 🚀 Features
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+- **Multi-Account Monitoring**: Track rate limits for unlimited Antigravity accounts in a single view.
+- **Auto-Discovery**: Automatically detects and loads accounts from your OpenCode configuration (`~/.config/opencode/antigravity-accounts.json`).
+- **Real-Time Tracking**:
+  - Request limits per minute.
+  - Token usage (Input/Output).
+  - Model-specific quotas (Gemini, Claude, Opus, etc.).
+- **Live Countdowns**: See exactly when your rate limits and quotas will reset.
+- **Smart Alerts**: Get visual toast notifications when your usage exceeds 80%.
+- **Neo-Brutalist Theme**: High-contrast, dark-mode-first aesthetic with bold borders and neon accents.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📋 Prerequisites
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Before you begin, ensure you have met the following requirements:
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- **Node.js**: v18.17.0 or higher (required for Next.js 16).
+- **Package Manager**: `npm`, `yarn`, `pnpm`, or `bun`.
+- **OpenCode / Antigravity CLI** (Optional): For automatic account discovery.
 
-## Learn More
+## 🛠️ Installation
 
-To learn more about Next.js, take a look at the following resources:
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/yourusername/antigravity-monitor.git
+    cd antigravity-monitor
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    ```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
 
-## Deploy on Vercel
+4.  Open [http://localhost:3000](http://localhost:3000) in your browser.
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## ⚙️ Configuration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+The app supports two methods for loading account data:
+
+### 1. Automatic (Recommended)
+If you use OpenCode or the Antigravity CLI, the app automatically detects your accounts file at:
+- **Windows**: `%USERPROFILE%\.config\opencode\antigravity-accounts.json`
+- **Linux/Mac**: `~/.config/opencode/antigravity-accounts.json`
+
+No extra setup required! Just run the app.
+
+### 2. Manual Configuration
+To manually configure accounts (e.g., for deployment or testing):
+
+1.  Copy the example config:
+    ```bash
+    cp config.example.json config.local.json
+    ```
+
+2.  Edit `config.local.json` with your API keys:
+    ```json
+    {
+      "accounts": [
+        {
+          "name": "My Production Account",
+          "apiKey": "sk-ant-...",
+          "color": "#FF0000"
+        }
+      ],
+      "refreshInterval": 30000,
+      "alertThreshold": 80
+    }
+    ```
+
+## 🏗️ Tech Stack
+
+- **Framework**: [Next.js 16](https://nextjs.org/) (App Router)
+- **Styling**: [Tailwind CSS 4](https://tailwindcss.com/)
+- **Components**: [shadcn/ui](https://ui.shadcn.com/)
+- **Theme**: Neo-Brutalist (Custom implementation)
+- **Icons**: [Lucide React](https://lucide.dev/)
+
+## 🎨 Theme Customization
+
+The app uses a CSS variable-based theme system in `app/globals.css`. It defaults to a high-contrast Dark Mode.
+
+- **Background**: Deep Black (`oklch(0.05 0 0)`)
+- **Accents**: Neon Yellow (`oklch(0.9 0.1 85)`) & Bright Red (`oklch(0.6 0.25 25)`)
+- **Borders**: Stark White (`#FFFFFF`)
+
+## 📄 License
+
+MIT
